@@ -1,6 +1,6 @@
 package Contollers;
 
-import TempPackage.Menu;
+//import TempPackage.Menu;
 
 /**
  * Created by Nik on 10/2/14.
@@ -17,6 +17,9 @@ public class MenuItem {
         this.name = name;
         this.price = price;
         this.itemtype = type;
+    }
+    public MenuItem() {
+
     }
 
     public String getName() {
