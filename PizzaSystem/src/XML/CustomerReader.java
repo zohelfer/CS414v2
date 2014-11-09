@@ -1,10 +1,8 @@
 package XML;
 
-import Contollers.ItemType;
+import Contollers.Customer;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
-
-import Contollers.MenuItem;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -14,22 +12,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Amanda on 11/6/2014.
+ * Created by Amanda on 11/9/2014.
  */
-
-public class MenuItemReader {
-
-    MenuItem mi;
+public class CustomerReader {
+    Customer c;
     String temp;
-    ArrayList<MenuItem> menu;
+    ArrayList<Customer> custList;
 
     public void parseFile() {
-        menu = new ArrayList<MenuItem>();
+        custList = new ArrayList<Customer>();
         SAXParserFactory s = SAXParserFactory.newInstance();
         try {
             SAXParser parser = s.newSAXParser();
             handler handler = new handler();
-            parser.parse("Menu.xml", handler);
+            parser.parse("Customers.xml", handler);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
@@ -41,25 +37,34 @@ public class MenuItemReader {
     class handler extends DefaultHandler {
 
         public void startElement(String namespaceUri, String localName, String qName, Attributes atts) throws SAXException {
-            if (qName.equalsIgnoreCase("MenuItem")) {
+            if (qName.equalsIgnoreCase("Customer")) {
                 temp = "";
-                mi = new MenuItem();
-                for(int i =0; i < atts.getLength(); i++) {
-                    if (atts.getValue("type").equalsIgnoreCase("pizza")) mi.changeType(ItemType.PIZZA);
-                    else if (atts.getValue("type").equalsIgnoreCase("drink")) mi.changeType(ItemType.DRINK);
-                    else mi.changeType(ItemType.SPECIAL);
-                }
+                c = new Customer();
+            //    c.setCustID(Integer.parseInt(atts.getValue("type")));
             }
         }
 
         public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
-            if (qName.equalsIgnoreCase("MenuItem")) {
-              menu.add(mi);
-            } else if (qName.equalsIgnoreCase("name")) mi.setName(temp);
-            else if (qName.equalsIgnoreCase("price")) mi.setPrice(Double.parseDouble(temp));
+            if (qName.equalsIgnoreCase("Customer")) {
+                custList.add(c);
+            } else if (qName.equalsIgnoreCase("name")) c.setName(temp);
+            else if (qName.equalsIgnoreCase("phone")) c.setPhone(temp);
+            else if (qName.equalsIgnoreCase("email")) c.setEmail(temp);
+            else if (qName.equalsIgnoreCase("address")) c.setAddress(temp);
+            else if (qName.equalsIgnoreCase("id")) c.setCustID(Integer.parseInt(temp));
         }
         public void characters(char[] chars, int s, int l) {
             temp = new String(chars, s, l);
         }
     }
+
+
+    public static void main(String[] args) {
+        CustomerReader cr = new CustomerReader();
+        cr.parseFile();
+        for(Customer c: cr.custList) {
+            System.out.println(c.toString());
+        }
+    }
+
 }

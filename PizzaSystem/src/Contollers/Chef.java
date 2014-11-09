@@ -14,6 +14,9 @@ public class Chef implements User {
         this.name = name;
         this.empID = empID;
     }
+    public Chef() {
+
+    }
 
     public int getID(){ return empID; }
 
