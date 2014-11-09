@@ -21,9 +21,16 @@ public class Customer implements User {
         this.address = address;
     }
 
+    public Customer() {
+
+    }
     public String getName(){ return name; }
 
+    public void setName(String n) { name = n; }
+
     public int getID(){ return custID; }
+
+    public void setCustID(int id) { custID = id; }
 
     public String getPhone() { return phone; }
 

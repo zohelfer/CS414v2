@@ -7,6 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
+=======
+    <orderEntry type="library" name="junit-4.0" level="project" />
+>>>>>>> c455de7c8b389525bba3c510d848c8b6e990f688
   </component>
 </module>
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Menu>
+  <MenuItem type="PIZZA">
+    <name>Pepperoni</name>
+    <price>11.99</price>
+  </MenuItem>
+  <MenuItem type="DRINK">
+    <name>Pepsi</name>
+    <price>2.5</price>
+  </MenuItem>
+  <MenuItem type="SPECIAL">
+    <name>Special</name>
+    <price>3.5</price>
+  </MenuItem>
+</Menu>
