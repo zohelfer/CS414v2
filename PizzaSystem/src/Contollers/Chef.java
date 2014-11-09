@@ -20,6 +20,8 @@ public class Chef implements User {
 
     public int getID(){ return empID; }
 
+    public void setID(int id) { empID = id; }
+
     public String getName(){ return name; }
 
     public void setName(String name) {

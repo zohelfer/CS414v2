@@ -8,7 +8,12 @@ public class WriterFactory {
         if(type.equalsIgnoreCase("menu")) {
             return new MenuItemWriter();
         }
-
+        else if(type.equalsIgnoreCase("customer")) {
+            return new CustomerWriter();
+        }
+        else if(type.equalsIgnoreCase("chef")) {
+            return new ChefWriter();
+        }
         return null;
     }
 }

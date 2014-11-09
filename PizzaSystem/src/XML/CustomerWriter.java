@@ -30,7 +30,7 @@ public class CustomerWriter extends XmlWriter{
             e = DOM.createElement("Customer");
             Customer m = (Customer) object;
             //Sets the type of menu item. EX: Pizza, Drink, Special
-            e.setAttribute("type", "Customer");
+            e.setAttribute("type", Integer.toString(m.getID()));
 
             //Sets the name of the customer.
             Element name = DOM.createElement("name");

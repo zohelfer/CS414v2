@@ -1,6 +1,6 @@
 package XML;
 
-import Contollers.Customer;
+import Contollers.Chef;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -14,18 +14,18 @@ import java.util.ArrayList;
 /**
  * Created by Amanda on 11/9/2014.
  */
-public class CustomerReader {
-    Customer c;
+public class ChefReader {
+    Chef c;
     String temp;
-    ArrayList<Customer> custList;
+    ArrayList<Chef> chefList;
 
     public void parseFile() {
-        custList = new ArrayList<Customer>();
+        chefList = new ArrayList<Chef>();
         SAXParserFactory s = SAXParserFactory.newInstance();
         try {
             SAXParser parser = s.newSAXParser();
             handler handler = new handler();
-            parser.parse("Customers.xml", handler);
+            parser.parse("Chefs.xml", handler);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
@@ -37,20 +37,17 @@ public class CustomerReader {
     class handler extends DefaultHandler {
 
         public void startElement(String namespaceUri, String localName, String qName, Attributes atts) throws SAXException {
-            if (qName.equalsIgnoreCase("Customer")) {
+            if (qName.equalsIgnoreCase("Chef")) {
                 temp = "";
-                c = new Customer();
-                c.setCustID(Integer.parseInt(atts.getValue("type")));
+                c = new Chef();
+                c.setID(Integer.parseInt(atts.getValue("type")));
             }
         }
-
         public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
-            if (qName.equalsIgnoreCase("Customer")) {
-                custList.add(c);
+            if (qName.equalsIgnoreCase("Chef")) {
+                chefList.add(c);
             } else if (qName.equalsIgnoreCase("name")) c.setName(temp);
-            else if (qName.equalsIgnoreCase("phone")) c.setPhone(temp);
-            else if (qName.equalsIgnoreCase("email")) c.setEmail(temp);
-            else if (qName.equalsIgnoreCase("address")) c.setAddress(temp);
+
         }
         public void characters(char[] chars, int s, int l) {
             temp = new String(chars, s, l);
@@ -59,10 +56,10 @@ public class CustomerReader {
 
 
     public static void main(String[] args) {
-        CustomerReader cr = new CustomerReader();
+        ChefReader cr = new ChefReader();
         cr.parseFile();
-        for(Customer c: cr.custList) {
-            System.out.println(c.toString());
+        for(Chef c: cr.chefList) {
+            System.out.println(c.getName());
         }
     }
 
